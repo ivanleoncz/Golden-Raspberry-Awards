@@ -13,10 +13,7 @@ Python 3.10 and Django 5.2.
 ```python -m venv .venv && source .venv/bin/activate```
 
 ### Installing Packages
-```pip install requirements.txt```
-
-### Run Migrations
-```python manage.py migrate```
+```pip install -r requirements.txt```
 
 ### Load Movies Dataset
 ```python manage.py import_worst_movies_dataset```
