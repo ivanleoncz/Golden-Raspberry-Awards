@@ -20,7 +20,7 @@ class YearAdmin(admin.ModelAdmin):
 
 @admin.register(MovieModel)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('title', 'year', 'get_studios', 'get_producers')
+    list_display = ('title', 'year', 'winner', 'get_studios', 'get_producers')
     search_fields = ('title', )
     ordering = ('title', )
 
