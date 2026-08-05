@@ -29,5 +29,5 @@ Python 3.10 and Django 5.2.
 
 ## API Documentation
 Available via DRF Spectacular, running the server:
-- [OpenAPI schema download](http://127.0.0.1:8000/api/schema/swagger-ui/)
-- [Swagger UI](http://127.0.0.1:8000/api/schema/swagger-ui/)
+- [Swagger UI](http://127.0.0.1:8000/api/schema/swagger-ui/), for reviewing endpoint and testing them in browser.
+- [OpenAPI YAML schema](http://127.0.0.1:8000/api/schema/swagger-ui/), for Postman-like services.
