@@ -8,8 +8,9 @@ class Command(BaseCommand):
     help = "Imports Worst Picture/Movie dataset from Golden Raspberry Awards"
 
     def handle(self, *args, **options):
+        imported_movies = 0
         self.stdout.write(self.style.NOTICE("Importing..."))
-        dataset = settings.DATASETS_DIR.joinpath("Movielist.csv")
+        dataset = settings.MOVIELIST_DATASET
         with open(dataset, 'r') as ds:
 
             next(ds) # Discard CSV header
@@ -18,7 +19,6 @@ class Command(BaseCommand):
             for line in ds:
                 line = line.strip("\n").strip(",").split(",")
 
-                self.stdout.write(self.style.NOTICE(f"\nLine: {line}"))
                 year: int = int(line[0])
                 movie: list[str] = [line[1]]
                 winner: bool = False
@@ -37,6 +37,7 @@ class Command(BaseCommand):
                         next_idx += 1
                     else:
                         db_movie = MovieModel.objects.get_or_create(year=db_year, title=" ".join(movie))[0]
+                        imported_movies += 1
                         db_studio = StudioModel.objects.get_or_create(name=col)[0]
                         db_studio.movies.add(db_movie)
                         next_idx += 1
@@ -96,4 +97,4 @@ class Command(BaseCommand):
                 db_movie.winner = winner
                 db_movie.save()
 
-        self.stdout.write(self.style.SUCCESS("Imported!"))
+        self.stdout.write(self.style.SUCCESS(f"{imported_movies} movies imported!"))
