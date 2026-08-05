@@ -15,6 +15,9 @@ Python 3.10 and Django 5.2.
 ### Installing Packages
 ```pip install -r requirements.txt```
 
+### Migrations
+```python manage.py makemigrations && python manage.py migrate```
+
 ### Load Movies Dataset
 ```python manage.py import_worst_movies_dataset```
 
