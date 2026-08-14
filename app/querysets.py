@@ -7,8 +7,8 @@ def get_queryset_producers_movie_winners_and_years():
 def get_movie_winners_by_producer(producer: ProducerModel):
     return producer.movies.filter(winner=True)
 
-def get_min_max_intervals_of_worst_movie_winners(min_list_display: int = 2,
-                                                 max_list_display: int = 2) -> dict:
+def get_min_max_intervals_of_worst_movie_winners(min_list_display: int = 1,
+                                                 max_list_display: int = 1) -> dict:
     """
     Obtains list of producers of 2+ worst movies, with minimal and maximum winning intervals,
     only displaying the tail of minimal intervals and the head of maximum intervals.

@@ -9,7 +9,7 @@ class YearsViewSet(ModelViewSet):
     serializer_class = YearSerializer
 
 class MoviesViewSet(ModelViewSet):
-    queryset = MovieModel.objects.all()
+    queryset = MovieModel.objects.select_related("year")
     serializer_class = MovieSerializer
 
 class StudiosViewSet(ModelViewSet):
