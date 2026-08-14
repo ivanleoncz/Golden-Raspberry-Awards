@@ -6,7 +6,7 @@ It exposes the WSGI callable as a module-level variable named ``application``.
 For more information on this file, see
 https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
 """
-
+import logging
 import os
 
 from django.db import connection
@@ -17,8 +17,9 @@ from app.utils import database_setup
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'razzies.settings')
 
-print(">>> Debug Activated: ", settings.DEBUG)
-print(">>> Database:        ", settings.DATABASES["default"]["NAME"])
+log = logging.getLogger()
+log.info(f"DEBUG is {settings.DEBUG}")
+log.info(f"Database is {settings.DATABASES["default"]["NAME"]}")
 
 # Ensure the DB preparation at runserver startup, specially for "in-memory" DB.
 # Persistent DB like "db.sqlite3", already prepared with Django + App migrations,

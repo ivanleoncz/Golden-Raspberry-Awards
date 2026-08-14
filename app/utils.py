@@ -1,3 +1,4 @@
+import logging
 import secrets
 import string
 
@@ -5,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management import call_command
 
+log = logging.getLogger()
 
 def generate_password(length: int = 10) -> str:
     characters = string.digits + string.punctuation + string.ascii_letters
@@ -15,10 +17,10 @@ def database_setup():
     A series of database preparations, depending on settings.DEBUG variable,
     mainly designed for server startup stage.
     """
-    print(">>> Running migrations...")
+    log.info("running migrations")
     call_command(command_name="migrate")
 
-    print(f">>> Creating superuser...")
+    log.info("creating superuser")
     superuser_created = False  # controls message about Django Admin credentials
     username = "grp-admin"
     password = generate_password()
@@ -26,15 +28,15 @@ def database_setup():
         User.objects.create_superuser(username=username, password=password, email=username + '@example.com')
         superuser_created = True
 
-    print(">>> Importing movies...")
+    log.info("importing movies dataset")
     call_command(command_name="import_worst_movies_dataset")
     if superuser_created:
-        print(f">>> Access Django Admin with the following credentials: '{username}' / '{password}'")
+        print(f"\n>>> Access Django Admin with the following credentials: '{username}' / '{password}'\n")
     else:
-        print(">>> Refer to project documentation for Django Admin credentials.")
+        log.info(f"refer to project documentation (README) for Django Admin credentials")
 
     if not settings.DEBUG:
-        print(">>> Django Shell does not have access to in-memory database of another process.")
+        log.warning(f"in-memory database belongs to server process - Django Shell will not be able to access it")
 
-    print(">>> Done!")
+    log.info("database setup finished!")
 
