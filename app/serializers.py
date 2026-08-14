@@ -8,9 +8,15 @@ class YearSerializer(ModelSerializer):
         fields = ["id", "year"]
 
 class MovieSerializer(ModelSerializer):
+
     class Meta:
         model = MovieModel
-        fields = ["id", "title", "winner"]
+        fields = ["id", "title", "winner", "year"]
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep["year"] = YearSerializer(instance.year).data
+        return rep
 
 class StudioSerializer(ModelSerializer):
     class Meta:
