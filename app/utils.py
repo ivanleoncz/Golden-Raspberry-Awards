@@ -22,9 +22,9 @@ def database_setup():
     call_command(command_name="migrate")
 
     print(f">>> Creating superuser...")
+    superuser_created = False  # controls message about Django Admin credentials
     username = "grp-admin"
     password = generate_password()
-    superuser_created = False
     if not User.objects.filter(username=username).exists():
         User.objects.create_superuser(username=username, password=password, email=username + '@example.com')
         superuser_created = True
