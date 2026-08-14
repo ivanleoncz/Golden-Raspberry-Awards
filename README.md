@@ -37,7 +37,7 @@ In-file database. Persistence guaranteed across restarts. Code changes will not 
 ## Django Admin
 Credentials are provided in the console when running the server. [Authenticate](http://127.0.0.1:8000/admin/) with user `grp-admin`.
 
-> **Notice:** *If the application is running in DEBUGGING mode (in-file database), credentials were already set. E.g: **grp-admin / grp-admin***
+> **Notice:** *If the application is running in DEBUGGING mode (in-file database), credentials might have already being set. E.g: **grp-admin / grp-admin***
 
 ## API Documentation
 Available via DRF Spectacular, running the server:
