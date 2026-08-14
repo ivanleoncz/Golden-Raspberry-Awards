@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ MOVIELIST_DATASET = DATASETS_DIR.joinpath("Movielist.csv")
 SECRET_KEY = 'django-insecure-f(uazpwvg80&g%ymm4+z&_rqphe16_9xclb)deb7nn0+ylpn8u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True if os.getenv("MOVIES_DEBUG", "0") == "1" else False
 
 ALLOWED_HOSTS = []
 if not DEBUG:
