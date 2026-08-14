@@ -89,6 +89,44 @@ WSGI_APPLICATION = 'razzies.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Logging
+# - https://docs.djangoproject.com/en/5.2/topics/logging/
+# - https://docs.python.org/3.12/library/logging.html#logrecord-attributes
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {  # trying to emulate Django console's format of request logs
+            "format": "[{asctime}] {levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "standard",
+            "filename": "django.log",
+            "maxBytes": 10_485_760,
+            "backupCount": 5,
+        }
+    },
+    "loggers": {
+        "django.server": {
+            "handlers": ["console", "file"],
+            "level": "INFO" if not DEBUG else "DEBUG",
+            "propagate": False,
+        },
+    },
+    "root": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+    },
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
