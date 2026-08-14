@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from app.utils import database_setup
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'razzies.settings')
+
+database_setup()
 
 application = get_wsgi_application()
