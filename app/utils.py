@@ -15,9 +15,6 @@ def database_setup():
     A series of database preparations, depending on settings.DEBUG variable,
     mainly designed for server startup stage.
     """
-    print(">>> Debug Activated: ", settings.DEBUG)
-    print(">>> Database:        ", settings.DATABASES["default"]["NAME"])
-
     print(">>> Running migrations...")
     call_command(command_name="migrate")
 
