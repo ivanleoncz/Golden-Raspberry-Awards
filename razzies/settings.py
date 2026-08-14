@@ -25,9 +25,11 @@ MOVIELIST_DATASET = DATASETS_DIR.joinpath("Movielist.csv")
 SECRET_KEY = 'django-insecure-f(uazpwvg80&g%ymm4+z&_rqphe16_9xclb)deb7nn0+ylpn8u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS.append("127.0.0.1")
 
 
 # Application definition
@@ -90,7 +92,7 @@ WSGI_APPLICATION = 'razzies.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'file::memory:?cache=shared' if not DEBUG else BASE_DIR.joinpath("db.sqlite3"),
     }
 }
 
