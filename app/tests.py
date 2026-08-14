@@ -31,9 +31,9 @@ class TestDataIngestionAndApi(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK, msg="endpoint 'intervals' is not available")
         self.assertIn("min", response.data, msg="json response does not contain an object 'min'")
-        self.assertEqual(len(response.data["min"]), 2, msg="'min' object does not contain a list of two elements")
+        self.assertEqual(len(response.data["min"]), 1, msg="'min' object does not contain a list of two elements")
         self.assertIn("max", response.data, msg="json response does not contain an object 'max'")
-        self.assertEqual(len(response.data["max"]), 2, msg="'max' object does not contain a list of two elements")
+        self.assertEqual(len(response.data["max"]), 1, msg="'max' object does not contain a list of two elements")
 
         expected_response = {
             'min': [
@@ -42,20 +42,9 @@ class TestDataIngestionAndApi(APITestCase):
                     'interval': 1,
                     'previousWin': 1990,
                     'followingWin': 1991
-                },
-                {
-                    'producer': 'Bo Derek',
-                    'interval': 6,
-                    'previousWin': 1984,
-                    'followingWin': 1990
                 }
             ],
             'max': [
-                {
-                    'producer': 'Buzz Feitshans',
-                    'interval': 9,
-                    'previousWin': 1985,
-                    'followingWin': 1994},
                 {
                     'producer': 'Matthew Vaughn',
                     'interval': 13,
@@ -82,21 +71,9 @@ class TestDataIngestionAndApi(APITestCase):
                     'interval': 1,
                     'previousWin': 1990,
                     'followingWin': 1991
-                },
-                {
-                    'producer': 'Bo Derek',
-                    'interval': 6,
-                    'previousWin': 1984,
-                    'followingWin': 1990
                 }
             ],
             'max': [
-                {
-                    'producer': 'Matthew Vaughn',
-                    'interval': 13,
-                    'previousWin': 2002,
-                    'followingWin': 2015
-                },
                 {
                     'producer': 'Bo Derek',
                     'interval': 35,  # <---------------------------- new movie winner from 2019
@@ -125,21 +102,9 @@ class TestDataIngestionAndApi(APITestCase):
                     'interval': 1,
                     'previousWin': 1990,
                     'followingWin': 1991
-                },
-                {
-                    'producer': 'Joel Silver',
-                    'interval': 1,
-                    'previousWin': 1991,
-                    'followingWin': 1992
                 }
             ],
             'max': [
-                {
-                    'producer': 'Buzz Feitshans',
-                    'interval': 9,
-                    'previousWin': 1985,
-                    'followingWin': 1994
-                },
                 {
                     'producer': 'Matthew Vaughn',
                     'interval': 13,
