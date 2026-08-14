@@ -15,20 +15,29 @@ Python 3.10 and Django 5.2.
 ### Installing Packages
 ```pip install -r requirements.txt```
 
-### Migrations
-```python manage.py migrate```
-
-### Load Movies Dataset
-```python manage.py import_worst_movies_dataset```
-
 ### Runserver
+
+In-memory database. No persistence. Each process start or code modification, sets the database to its initial state:
+
 ```python manage.py runserver```
+
+If you want to preserve the database state during the life of the process:
+
+```python manage.py runserver --noreload```
+
+
+#### Debugging
+In-file database. Persistence guaranteed across restarts. Code changes will not trigger process reloading:
+
+```MOVIES_DEBUG=1 python manage.py runserver```
 
 ## Tests
 ```python manage.py test app -v 2```
 
 ## Django Admin
-[Authenticate](http://127.0.0.1:8000/admin/) with `grp-admin` string for both Username and Password.
+Credentials are provided in the console when running the server. [Authenticate](http://127.0.0.1:8000/admin/) with user `grp-admin`.
+
+> **Notice:** *If the application is running in DEBUGGING mode (in-file database), credentials were already set. E.g: **grp-admin / grp-admin***
 
 ## API Documentation
 Available via DRF Spectacular, running the server:
