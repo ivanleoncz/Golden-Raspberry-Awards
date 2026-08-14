@@ -123,7 +123,7 @@ LOGGING = {
     },
     "root": {
         "handlers": ["console", "file"],
-        "level": "INFO",
+        "level": "INFO" if not DEBUG else "DEBUG",
     },
 }
 
