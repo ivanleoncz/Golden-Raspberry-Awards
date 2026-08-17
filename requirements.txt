@@ -7,7 +7,7 @@ djangorestframework==3.17.1
 drf-spectacular==0.30.0
 executing==2.2.1
 inflection==0.5.1
-ipython==9.16.1
+ipython==8.38.0
 ipython_pygments_lexers==1.1.1
 jedi==0.20.0
 jsonschema==4.26.0
@@ -22,7 +22,7 @@ pure_eval==0.2.3
 Pygments==2.20.0
 PyYAML==6.0.3
 referencing==0.37.0
-rpds-py==2026.6.3
+rpds-py==0.25.0
 sqlparse==0.5.5
 stack-data==0.6.3
 traitlets==5.16.1

@@ -1,0 +1,26 @@
+name: running-tests-with-multiple-python-versions
+
+on: [push]
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-slim
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", ]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+      - name: Python ${{ matrix.python-version }} Setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install SSL Certificates from CAs
+        run: sudo apt-get update && sudo apt-get install ca-certificates
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Running Tests
+        run: python manage.py test app -v 2
